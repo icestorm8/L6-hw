@@ -9,6 +9,7 @@ export default function Form() {
     register,
     handleSubmit,
     reset,
+    formState: { isDirty },
     // formState: { isSubmitSuccessful },
     formState: { errors },
     getValues,
@@ -19,13 +20,18 @@ export default function Form() {
     console.log(data);
   };
   const resetPage = () => {
-    reset({
-      name: "",
-      email: "",
-      email2: "",
-      password: "",
-    });
-    setName("");
+    if (
+      isDirty &&
+      window.confirm("are you sure? this will remove the name from the header!")
+    ) {
+      reset({
+        name: "",
+        email: "",
+        email2: "",
+        password: "",
+      });
+      setName("");
+    }
   };
   return (
     <div className="container">
